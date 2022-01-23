@@ -41,4 +41,4 @@ class MyYieldScheduler:
                 pass
 
 
-scheduler = MyYieldScheduler()
+sched = MyYieldScheduler()

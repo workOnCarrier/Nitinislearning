@@ -1,8 +1,8 @@
 import queue
 import time
 
-from async_concurrent.callback_scheduler import sched
-from async_concurrent.yield_scheduler import scheduler
+
+# from async_concurrent.yield_scheduler import scheduler
 
 
 class QueueClosed(Exception):
@@ -28,6 +28,7 @@ def consumer(q: queue):
 
 
 def callback_producer(q: queue, count: int):
+    from async_concurrent.callback_scheduler import sched
     def _run(n):
         if n < count:
             print(f'producing {n}')
@@ -41,6 +42,7 @@ def callback_producer(q: queue, count: int):
 
 
 def callback_consumer(id: str, q: queue):
+    from async_concurrent.callback_scheduler import sched
     def _consume(result):
         try:
             item = result.result()
@@ -53,10 +55,11 @@ def callback_consumer(id: str, q: queue):
 
 
 async def async_producer(q: queue, count: int):
+    from async_concurrent.callback_scheduler import sched
     for n in range(count):
         print(f'producing {n}')
         await q.put(n)
-        await scheduler.sleep(1)
+        await sched.sleep(1)
     print(f'Producer done')
     q.close()
 #    await q.put(None)  # sentinel to mark shut down of production

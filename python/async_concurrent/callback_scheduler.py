@@ -1,6 +1,19 @@
 from collections import deque
 import time
 import heapq
+from async_concurrent.async_common import switch
+
+class Task:
+    def __init__(self, coro):
+        self.coro = coro
+    def __call__(self):
+        try:
+            sched.current = self
+            self.coro.send(None)
+            if sched.current:
+                sched.ready.append(self)
+        except StopIteration:
+            pass
 
 
 class MyScheduler:
@@ -31,6 +44,14 @@ class MyScheduler:
             while self.ready:
                 func = self.ready.popleft()
                 func()
+    
+    def new_task(self, coro):
+        self.ready.append(Task(coro))
+
+    async def sleep(self, delay):
+        self.call_later(delay, self.current)
+        self.current = None
+        await switch()
 
 
 
