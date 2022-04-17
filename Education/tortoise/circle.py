@@ -1,3 +1,4 @@
+from time import sleep
 from turtle import Screen, Turtle
 
 s = Screen()
@@ -20,4 +21,5 @@ def square():
 
 if __name__ == "__main__":
     square()
+    sleep(20)
     wait = input("waiting")
