@@ -1,0 +1,9 @@
+@startuml
+!include<archimate/Archimate>
+
+Rel_Access(4, 5, 1)
+Rel_Access(5, 6, 2)
+Rel_Access(6, 7, 3)
+Rel_Access(7, None, 4)
+
+@enduml

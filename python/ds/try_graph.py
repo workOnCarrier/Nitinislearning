@@ -80,7 +80,6 @@ def try_graph_dfs():
     puml_file = "graph_adjlist.puml"
     graph_adjlist_to_puml(graph, puml_file)
 
-    # my_result = my_topological_sort(graph)
     his_result = topological_sort(graph)
     #
     # for item in my_result:
@@ -91,6 +90,7 @@ def try_graph_dfs():
         print(item, end=' ')
 
     dfs_walk_result = graph_dfs_walk(graph)
+    print("\nmy values")
     for vertex in dfs_walk_result:
         print(vertex, end=' ')
 

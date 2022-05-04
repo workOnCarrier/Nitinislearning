@@ -1,0 +1,20 @@
+@startuml
+!include<archimate/Archimate>
+
+Rel_Access(a, b, 1)
+Rel_Access(a, c, 2)
+Rel_Access(b, a, 3)
+Rel_Access(b, d, 4)
+Rel_Access(b, e, 5)
+Rel_Access(c, a, 6)
+Rel_Access(c, e, 7)
+Rel_Access(d, b, 8)
+Rel_Access(d, e, 9)
+Rel_Access(d, f, 10)
+Rel_Access(e, d, 11)
+Rel_Access(e, f, 12)
+Rel_Access(e, c, 13)
+Rel_Access(f, d, 14)
+Rel_Access(f, e, 15)
+
+@enduml

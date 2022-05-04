@@ -30,19 +30,20 @@ def try_run_topological_sort():
     graph.add_vertex('f')
     graph.add_vertex('g')
     graph.add_vertex('h')
+    graph.add_edge('b', 'c')
+    graph.add_edge('b', 'd')
     graph.add_edge('a', 'c')
     graph.add_edge('c', 'e')
     graph.add_edge('e', 'h')
     graph.add_edge('e', 'f')
     graph.add_edge('f', 'g')
-    graph.add_edge('b', 'c')
-    graph.add_edge('b', 'd')
     graph.add_edge('d', 'f')
     file_name = 'for_topological.puml'
     graph_adjlist_to_puml(graph, file_name, single=True)
     result = topological_sort(graph)
     for item in result:
         print(item, end=" ")
+    print(" ")
 
 if __name__ == '__main__':
     try_run_topological_sort()

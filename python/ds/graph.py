@@ -65,24 +65,49 @@ def graph_dfs_process(graph: Graph, vertex, processor: callable):
         processor(item)
 
 
+class MyStack():
+    def __init__(self):
+        self.__stack = []
+
+    def push(self, value):
+        self.__stack.append(value)
+
+    def pop(self):
+        return self.__stack.pop()
+
+    def __len__(self):
+        return len(self.__stack)
+
+
 def graph_dfs_walk(graph: Graph):
-    to_visit = []
-    to_process = []
+    to_visit = MyStack()
+    final = []
+
+    def processed(processed_list, edges) -> bool:
+        is_processed = True
+        for edge in edges:
+            if edge not in processed_list:
+                is_processed = False
+        return is_processed
 
     def walk_vertex():
         while to_visit:
             cv = to_visit.pop()
-            if cv not in to_process:
-                to_process.append(cv)
-            for v_next in graph.edges(cv):
-                if v_next not in to_visit:
-                    to_visit.append(v_next)
+            if cv in final:
+                continue
+            edges = graph.edges(cv)
+            if not edges or processed(final, edges):
+                final.insert(0, cv)
+            else:
+                to_visit.push(cv)
+                for v_next in graph.edges(cv):
+                    if v_next not in final:
+                        to_visit.push(v_next)
 
     for vertex in graph.vertices():
-        to_visit.append(vertex)
+        to_visit.push(vertex)
         walk_vertex()
-    return to_process
-
+    return final
 
 
 def my_topological_sort(graph):
