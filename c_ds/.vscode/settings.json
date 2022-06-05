@@ -1,0 +1,12 @@
+{
+    "cmake.sourceDirectory": "${workspaceFolder}/graph/topological_sort",
+    "cmake.cmakePath": "c:\\msys64\\mingw64\\bin\\cmake",
+    "cmake.useCMakePresets": "auto",
+    "cmake.buildDirectory": "${workspaceFolder}/build",
+    "cmake.mingwSearchDirs": [
+        "C:\\mingw-w64\\mingw64\\bin"
+    ],
+    "cmake.generator": "Ninja",
+    "plantuml.server":  "https://www.plantuml.com/plantuml",
+    "plantuml.render": "PlantUMLServer",
+}

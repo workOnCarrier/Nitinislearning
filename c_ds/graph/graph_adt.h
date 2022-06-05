@@ -42,7 +42,7 @@ vector<Edge> edges(Graph &graph){
                     if (graph.directed() || curr < adj_item){
                         a[E++] = Edge(curr, adj_item);
                     }
-        })
+        }
     }
     return a;
 }
@@ -86,19 +86,19 @@ public:
 
 class GraphDense::AdjIterator{
     const GraphDense &m_graph;
-    int curr_index, curr_vector;
+    int m_curr_index, m_curr_vector;
 public:
     AdjIterator(const GraphDense& graph, int vertex):
-    m_graph(graph), curr_vector(vertex), curr_index(-1){}
+    m_graph(graph), m_curr_vector(vertex), m_curr_index(-1){}
     int next(){
-        for(curr_index++; curr_index < m_graph.VerticesCount(); curr_index++){
-            if (m_graph.adj_matrix[curr_vector][curr_index] == true) return curr_index;
+        for(m_curr_index++; m_curr_index < m_graph.VerticesCount(); m_curr_index++){
+            if (m_graph.adj_matrix[m_curr_vector][m_curr_index] == true) return m_curr_index;
         }
         return -1;
     }
-    int beg(){curr_index=-1; return next();}
+    int beg(){m_curr_index=-1; return next();}
     bool end(){
-        return curr_index >= m_graph.VerticesCount();
+        return m_curr_index >= m_graph.VerticesCount();
     }
 };
 
