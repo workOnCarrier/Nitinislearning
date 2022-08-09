@@ -9,7 +9,9 @@ def work_with_spam_1():
     s = spam_v1()
     print(s)  # expected to get a generator object
     print("generator not primed, priming")
-    print(next(s))  # prints None -- advances execution to yield statement
+    print(f"first next {next(s)}")  # prints None -- advances execution to yield statement
+    print(f"second next {next(s)}")
+    print("\t end of first generator")
 
 def spam_v2():
     print("primed")
@@ -24,9 +26,11 @@ def work_with_spam_2():
     s = spam_v2()
     print(s)
     print("generator not primed, priming")
-    next(s)
+    print(f" first next {next(s)}")
     yield_value = s.send("hey")
-    print(yield_value)
+    print(f" return of send \"hey\" {yield_value}")
+    print(f" trying next {next(s)}")
+    print(f" trying next {next(s)}")
 
 
 

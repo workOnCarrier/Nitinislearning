@@ -1,0 +1,8 @@
+<?xml version="1.0" ?>
+<buses>
+    <bus only_ref="trial_ref">
+        <id>999</id>
+        <route>19009</route>
+        <direction>North Bound</direction>
+    </bus>
+</buses>
