@@ -1,0 +1,9 @@
+
+2023-09-29 21:09:26:INFO creating obj
+2023-09-29 21:09:26:INFO entering
+2023-09-29 21:09:26:INFO about to sleep
+2023-09-29 21:09:26:INFO sleeping for 3 secs : operation 6
+2023-09-29 21:09:27:INFO sleeping for 2 secs : operation 4
+2023-09-29 21:09:28:INFO sleeping for 1 secs : operation 2
+2023-09-29 21:09:29:INFO awake now
+2023-09-29 21:09:29:INFO exiting
