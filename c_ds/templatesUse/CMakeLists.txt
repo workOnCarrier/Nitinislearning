@@ -16,3 +16,5 @@ add_executable(custPriorityq
 add_executable(variable_parms 
                 variable_params.cpp
                 )
+
+add_executable(map_use_learn map_use_learn.cpp)

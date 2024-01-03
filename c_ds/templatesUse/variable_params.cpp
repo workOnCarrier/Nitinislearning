@@ -19,13 +19,13 @@ class ExecuterConduit{
         bool result = false;
         std::string supliment = " with supliment ";
  // this usage of std::forward<Args>(args) ... doest not work
-        auto lambda_wrapper = [&result, supliment, &executer, ... args = std::forward<Args>(executer_args)] () {
-            result = executer(supliment, std::forward<Args>(args)...);
-        };
+//         auto lambda_wrapper = [&result, supliment, &executer, ... args = std::forward<Args>(executer_args)] () {
+//             result = executer(supliment, std::forward<Args>(args)...);
+//         };
 // this works
-//        auto lambda_wrapper = [&result, supliment, &executer, ... args = std::forward<Args>(executer_args)](){
-//            result = executer(supliment, args...);
-//        };
+        auto lambda_wrapper = [&result, supliment, &executer, ... args = std::forward<Args>(executer_args)](){
+            result = executer(supliment, args...);
+        };
 
 // this works
 //        auto lambda_wrapper = [&result, &executer, supliment, args = std::tuple<Args...>(std::forward<Args>(executer_args)...)]() {
