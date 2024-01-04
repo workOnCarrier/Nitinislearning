@@ -1,0 +1,122 @@
+file%3A%2F%2F%2FUsers%2Fnitinsharma%2Fwork%2Fstudy%2Fgithub%2FNitinislearning%2Fscala%2Fneev%2FbuildBlocks%2FclassConstruct.worksheet.sc:11: error: then expected but else found
+        if b == 0 then a else gcd(b, a % b)
+                         ^
+occurred in the presentation compiler.
+
+action parameters:
+uri: file://<WORKSPACE>/buildBlocks/classConstruct.worksheet.sc
+text:
+class Rational(x: Int, y: Int) {
+    def numer = x / gcd(x, y)
+    def denom = y / gcd(x, y)
+    def add(r: Rational) = 
+        Rational( numer * r.denom + denom * r.numer, denom * r.denom)
+    def mul(r: Rational) = 
+        Rational( numer * r.numer , denom * r.denom)
+    override def toString = s"$numer/$denom"
+
+    private def gcd(a: Int, b: Int): Int = 
+        if b == 0 then a else gcd(b, a % b)
+    
+    def neg ( r: Rational) = Rational(-numer, denom)
+    def less(that: Rational) :Boolean = numer * that.denom < that.numer * denom
+    def max(that: Rational) :Rational = if this.less(that) then that else this
+  
+}
+
+
+
+
+val a: Rational = Rational(1, 3)
+val b: Rational = Rational(5, 7)
+val c: Rational = Rational(3, 2)
+val newVal = a.add(b).mul(c)
+println(newVal)
+var sub = a.sub(b).sub(c)
+
+
+
+error stacktrace:
+scala.meta.internal.parsers.Reporter.syntaxError(Reporter.scala:16)
+	scala.meta.internal.parsers.Reporter.syntaxError$(Reporter.scala:16)
+	scala.meta.internal.parsers.Reporter$$anon$1.syntaxError(Reporter.scala:22)
+	scala.meta.internal.parsers.Reporter.syntaxError(Reporter.scala:17)
+	scala.meta.internal.parsers.Reporter.syntaxError$(Reporter.scala:17)
+	scala.meta.internal.parsers.Reporter$$anon$1.syntaxError(Reporter.scala:22)
+	scala.meta.internal.parsers.ScalametaParser.syntaxErrorExpected(ScalametaParser.scala:367)
+	scala.meta.internal.parsers.ScalametaParser.expect(ScalametaParser.scala:369)
+	scala.meta.internal.parsers.ScalametaParser.accept(ScalametaParser.scala:373)
+	scala.meta.internal.parsers.ScalametaParser.acceptAfterOptNL(ScalametaParser.scala:383)
+	scala.meta.internal.parsers.ScalametaParser.$anonfun$ifClause$1(ScalametaParser.scala:1468)
+	scala.meta.internal.parsers.ScalametaParser.autoEndPos(ScalametaParser.scala:349)
+	scala.meta.internal.parsers.ScalametaParser.autoEndPos(ScalametaParser.scala:354)
+	scala.meta.internal.parsers.ScalametaParser.ifClause(ScalametaParser.scala:1461)
+	scala.meta.internal.parsers.ScalametaParser.$anonfun$expr$2(ScalametaParser.scala:1518)
+	scala.meta.internal.parsers.ScalametaParser.atPosOpt(ScalametaParser.scala:303)
+	scala.meta.internal.parsers.ScalametaParser.autoPosOpt(ScalametaParser.scala:347)
+	scala.meta.internal.parsers.ScalametaParser.expr(ScalametaParser.scala:1512)
+	scala.meta.internal.parsers.ScalametaParser.expr(ScalametaParser.scala:1403)
+	scala.meta.internal.parsers.ScalametaParser.exprMaybeIndented(ScalametaParser.scala:1425)
+	scala.meta.internal.parsers.ScalametaParser.$anonfun$funDefRest$1(ScalametaParser.scala:3736)
+	scala.meta.internal.parsers.ScalametaParser.autoEndPos(ScalametaParser.scala:349)
+	scala.meta.internal.parsers.ScalametaParser.autoEndPos(ScalametaParser.scala:354)
+	scala.meta.internal.parsers.ScalametaParser.funDefRest(ScalametaParser.scala:3698)
+	scala.meta.internal.parsers.ScalametaParser.funDefOrDclOrExtensionOrSecondaryCtor(ScalametaParser.scala:3644)
+	scala.meta.internal.parsers.ScalametaParser.defOrDclOrSecondaryCtor(ScalametaParser.scala:3476)
+	scala.meta.internal.parsers.ScalametaParser.nonLocalDefOrDcl(ScalametaParser.scala:3455)
+	scala.meta.internal.parsers.ScalametaParser$$anonfun$templateStat$1.applyOrElse(ScalametaParser.scala:4415)
+	scala.meta.internal.parsers.ScalametaParser$$anonfun$templateStat$1.applyOrElse(ScalametaParser.scala:4409)
+	scala.PartialFunction.$anonfun$runWith$1(PartialFunction.scala:231)
+	scala.PartialFunction.$anonfun$runWith$1$adapted(PartialFunction.scala:230)
+	scala.meta.internal.parsers.ScalametaParser.statSeqBuf(ScalametaParser.scala:4357)
+	scala.meta.internal.parsers.ScalametaParser.getStats$2(ScalametaParser.scala:4399)
+	scala.meta.internal.parsers.ScalametaParser.$anonfun$scala$meta$internal$parsers$ScalametaParser$$templateStatSeq$3(ScalametaParser.scala:4400)
+	scala.meta.internal.parsers.ScalametaParser.$anonfun$scala$meta$internal$parsers$ScalametaParser$$templateStatSeq$3$adapted(ScalametaParser.scala:4397)
+	scala.meta.internal.parsers.ScalametaParser.scala$meta$internal$parsers$ScalametaParser$$listBy(ScalametaParser.scala:505)
+	scala.meta.internal.parsers.ScalametaParser.scala$meta$internal$parsers$ScalametaParser$$templateStatSeq(ScalametaParser.scala:4397)
+	scala.meta.internal.parsers.ScalametaParser.scala$meta$internal$parsers$ScalametaParser$$templateStatSeq(ScalametaParser.scala:4386)
+	scala.meta.internal.parsers.ScalametaParser.$anonfun$templateBody$1(ScalametaParser.scala:4237)
+	scala.meta.internal.parsers.ScalametaParser.inBracesOr(ScalametaParser.scala:245)
+	scala.meta.internal.parsers.ScalametaParser.inBraces(ScalametaParser.scala:241)
+	scala.meta.internal.parsers.ScalametaParser.templateBody(ScalametaParser.scala:4237)
+	scala.meta.internal.parsers.ScalametaParser.templateBodyOpt(ScalametaParser.scala:4241)
+	scala.meta.internal.parsers.ScalametaParser.templateAfterExtends(ScalametaParser.scala:4184)
+	scala.meta.internal.parsers.ScalametaParser.$anonfun$templateOpt$1(ScalametaParser.scala:4232)
+	scala.meta.internal.parsers.ScalametaParser.atPos(ScalametaParser.scala:300)
+	scala.meta.internal.parsers.ScalametaParser.autoPos(ScalametaParser.scala:346)
+	scala.meta.internal.parsers.ScalametaParser.templateOpt(ScalametaParser.scala:4222)
+	scala.meta.internal.parsers.ScalametaParser.$anonfun$classDef$1(ScalametaParser.scala:3866)
+	scala.meta.internal.parsers.ScalametaParser.autoEndPos(ScalametaParser.scala:349)
+	scala.meta.internal.parsers.ScalametaParser.autoEndPos(ScalametaParser.scala:354)
+	scala.meta.internal.parsers.ScalametaParser.classDef(ScalametaParser.scala:3842)
+	scala.meta.internal.parsers.ScalametaParser.tmplDef(ScalametaParser.scala:3801)
+	scala.meta.internal.parsers.ScalametaParser.defOrDclOrSecondaryCtor(ScalametaParser.scala:3495)
+	scala.meta.internal.parsers.ScalametaParser.nonLocalDefOrDcl(ScalametaParser.scala:3455)
+	scala.meta.internal.parsers.ScalametaParser$$anonfun$1.applyOrElse(ScalametaParser.scala:4299)
+	scala.meta.internal.parsers.ScalametaParser$$anonfun$1.applyOrElse(ScalametaParser.scala:4294)
+	scala.PartialFunction.$anonfun$runWith$1(PartialFunction.scala:231)
+	scala.PartialFunction.$anonfun$runWith$1$adapted(PartialFunction.scala:230)
+	scala.meta.internal.parsers.ScalametaParser.statSeqBuf(ScalametaParser.scala:4357)
+	scala.meta.internal.parsers.ScalametaParser.$anonfun$batchSource$13(ScalametaParser.scala:4594)
+	scala.Option.getOrElse(Option.scala:201)
+	scala.meta.internal.parsers.ScalametaParser.$anonfun$batchSource$1(ScalametaParser.scala:4594)
+	scala.meta.internal.parsers.ScalametaParser.atPos(ScalametaParser.scala:300)
+	scala.meta.internal.parsers.ScalametaParser.autoPos(ScalametaParser.scala:346)
+	scala.meta.internal.parsers.ScalametaParser.batchSource(ScalametaParser.scala:4550)
+	scala.meta.internal.parsers.ScalametaParser.$anonfun$source$1(ScalametaParser.scala:4543)
+	scala.meta.internal.parsers.ScalametaParser.atPos(ScalametaParser.scala:300)
+	scala.meta.internal.parsers.ScalametaParser.autoPos(ScalametaParser.scala:346)
+	scala.meta.internal.parsers.ScalametaParser.source(ScalametaParser.scala:4543)
+	scala.meta.internal.parsers.ScalametaParser.entrypointSource(ScalametaParser.scala:4548)
+	scala.meta.internal.parsers.ScalametaParser.parseSourceImpl(ScalametaParser.scala:127)
+	scala.meta.internal.parsers.ScalametaParser.$anonfun$parseSource$1(ScalametaParser.scala:124)
+	scala.meta.internal.parsers.ScalametaParser.parseRuleAfterBOF(ScalametaParser.scala:51)
+	scala.meta.internal.parsers.ScalametaParser.parseRule(ScalametaParser.scala:46)
+	scala.meta.internal.parsers.ScalametaParser.parseSource(ScalametaParser.scala:124)
+	scala.meta.parsers.Parse$.$anonfun$parseSource$1(Parse.scala:29)
+	scala.meta.parsers.Parse$$anon$1.apply(Parse.scala:36)
+	scala.meta.parsers.Api$XtensionParseDialectInput.parse(Api.scala:25)
+	scala.meta.internal.semanticdb.scalac.ParseOps$XtensionCompilationUnitSource.toSource(ParseOps.scala:17)
+	scala.meta.internal.semanticdb.scalac.TextDocumentOps$XtensionCompilationUnitDocument.toTextDocument(TextDocumentOps.scala:206)
+	scala.meta.internal.pc.SemanticdbTextDocumentProvider.textDocument(SemanticdbTextDocumentProvider.scala:54)
+	scala.meta.internal.pc.ScalaPresentationCompiler.$anonfun$semanticdbTextDocument$1(ScalaPresentationCompiler.scala:350)
