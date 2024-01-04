@@ -25,11 +25,11 @@ from async_concurrent.callback_scheduler import sched
 # scheduler.new_task(asyn_operations.await_countup(21))
 # scheduler.run()
 
-# async_await_queue = AsyncAwaitQueue()
-# scheduler.new_task(async_producer(async_await_queue, 10))
-# scheduler.new_task(async_consumer(async_await_queue))
-# scheduler.new_task(async_consumer(async_await_queue))
-# scheduler.run()
+async_await_queue = AsyncAwaitQueue()
+scheduler.new_task(async_producer(async_await_queue, 10))
+scheduler.new_task(async_consumer(async_await_queue))
+scheduler.new_task(async_consumer(async_await_queue))
+scheduler.run()
 
 q = AsyncCallbackQueue()
 sched.call_soon(lambda: callback_producer(q, 10))
