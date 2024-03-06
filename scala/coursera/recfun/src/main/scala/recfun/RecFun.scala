@@ -3,6 +3,47 @@ package recfun
 object RecFun extends RecFunInterface:
 
   def main(args: Array[String]): Unit =
+    mainPascal(args)
+    mainBalance(args)
+    mainCountChange(args)
+    
+  def mainPascal(args: Array[String]): Unit =
+    println("Pascal's Triangle")
+    for row <- 0 to 10 do
+      for col <- 0 to row do
+        print(s"${pascal(col, row)} ")
+      println()
+
+  def mainBalance(args: Array[String]): Unit = {
+    // val chars: List[Char] = "())()".toList
+    val chars: List[Char] = "()()()".toList
+    println(s"output of ${chars} is ${balance(chars)}")
+  }
+
+  def mainCountChange(args: Array[String]): Unit = {
+    // val coins: List[Int] = List(1, 2)
+    // val count = countChange(4, coins)
+    val coins: List[Int] = List(500, 5, 50, 100, 20, 200, 10)
+    val money: Int = 300
+    val count: Int = countChange(money , coins)
+    print(s"available permutations $count")
+  }
+  /**
+   * Exercise 1
+   */
+  def pascal(c: Int, r: Int): Int = {
+    def listRow(row:List[Int]): List[Int] = {
+      // println(s"list received: $row")
+      val pairs = row.zip(row.tail)
+      val internal = pairs.map( x => x._1 + x._2)
+      val finalList = 1 :: internal ::: 1 :: Nil
+      if ( finalList.size > r ) finalList
+      else listRow(finalList)
+    }
+    val finalList = listRow(List(1))
+    // println(s"finalList obtained: ${finalList}")
+    finalList(c)
+  }
     println("Pascal's Triangle")
     // print(s"${pascal(1, 2)} ")
     // print(s"${balance("()(()".toList)}")

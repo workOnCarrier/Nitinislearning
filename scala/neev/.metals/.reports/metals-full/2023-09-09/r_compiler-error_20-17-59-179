@@ -1,0 +1,165 @@
+file%3A%2F%2F%2FUsers%2Fnitinsharma%2Fwork%2Fstudy%2Fgithub%2FNitinislearning%2Fscala%2Fneev%2FbuildBlocks%2FhigherOrder.worksheet.sc:3: error: then expected but else found
+    if a > b then 0 else a+ sumInts(a+1, b)
+                    ^
+occurred in the presentation compiler.
+
+action parameters:
+uri: file://<WORKSPACE>/buildBlocks/higherOrder.worksheet.sc
+text:
+
+def sumInts(a: Int, b: Int): Int = {
+    if a > b then 0 else a+ sumInts(a+1, b)
+}
+
+def cube (x: Int): Int = x*x*x
+
+def sumCubes(a: Int, b: Int): Int = 
+    if a > b then 0 else cube(a) + sumCubes(a+1, b)
+
+def fact(a:Int): Int = 
+    if a == 1 then 1 else a * fact(a-1)
+
+def sumFactorial(a: Int, b: Int): Int = 
+    if a > b then 0 else fact(a) + sumFactorial(a+1, b)
+
+sumFactorial(1, 4)
+sumCubes(1,3)
+
+def summation(f: Int => Int, a: Int, b: Int) : Int = 
+    if a > b then 0 else f(a) + summation(f, a+1, b)
+
+val cubeSum = summation(x => x * x * x, 1, 3)
+val factSum = summation(fact, 1, 4)
+
+def tailRecSum(f: Int => Int, a: Int, b: Int): Int = 
+    def loop(a: Int, acc: Int): Int =
+        if a > b then acc
+        else loop(a+1, acc+f(a))
+    loop(a, 0)
+
+val newCubeSum = tailRecSum(x => x * x * x, 1, 3)
+
+def funcReturnFunc(f: Int => Int) : (Int, Int) => Int =
+    def genSum(a: Int, b: Int) : Int =
+        if a > b then 0
+        else f(a) + genSum(a+1, b)
+    genSum
+
+val funCubeSum = funcReturnFunc(fact)(1,4)
+
+def curriedFun(f: Int => Int)(a: Int,b: Int): Int =
+    // def genSum(a: Int, b: Int) : Int =
+        if a > b then 0
+        else f(a) + curriedFun(f)(a+1, b) // else f(a) + genSum(a+1, b)
+    // genSum
+
+val curriedCubSum = curriedFun(z => z * z * z)(1,3)
+
+
+def products(f: Int=> Int)(a: Int, b: Int): Int =
+    if a > b then 1 else f(a) * products(f)(a+1, b)
+
+val newFactVal = products(x => x)(1, 4)
+
+def newFact(n: Int) = products(x => x)(1, n)
+
+val factWithProd = newFact(4)
+
+def genAccum ( f: Int => Int, oper: (Int, Int)=> Int, default: Int)(a: Int, b: Int): Int =
+    def recur(a: Int): Int = 
+        if a > b then default else oper(f(a), genAccum(f, oper, default)(a+1, b))
+    recur(a)
+
+def crazyFact(n: Int) = genAccum(z => z, (x, y) => x * y, 1)(1, n)
+// def sumFactCrazy(n: Int) = genAccum(z => crazyFact(z), (x, y) => x + y, 0)(1, n)
+def sumFactCrazy(n: Int) = genAccum(z => genAccum(z => z, (x, y)=> x*y, 1)(1,z), (x, y) => x + y, 0)(1, n)
+def sumN(n: Int) = genAccum(z => z, (x , y) => x + y, 0) (1, n)
+def sumFunc(f: Int => Int) = genAccum(f, (x , y) => x + y, 0)
+def newSumN(n: Int) = sumFunc(x => x)(1, n)
+
+val sumWithCrazy = sumN(4)
+val sumWithNewSumN = newSumN(4)
+val factWithCrazy = crazyFact(4)
+val sumFactWithCrazy = sumFactCrazy(5)
+val splitUpFactSum = sumFunc(crazyFact)(1,5)
+
+
+
+error stacktrace:
+scala.meta.internal.parsers.Reporter.syntaxError(Reporter.scala:16)
+	scala.meta.internal.parsers.Reporter.syntaxError$(Reporter.scala:16)
+	scala.meta.internal.parsers.Reporter$$anon$1.syntaxError(Reporter.scala:22)
+	scala.meta.internal.parsers.Reporter.syntaxError(Reporter.scala:17)
+	scala.meta.internal.parsers.Reporter.syntaxError$(Reporter.scala:17)
+	scala.meta.internal.parsers.Reporter$$anon$1.syntaxError(Reporter.scala:22)
+	scala.meta.internal.parsers.ScalametaParser.syntaxErrorExpected(ScalametaParser.scala:367)
+	scala.meta.internal.parsers.ScalametaParser.expect(ScalametaParser.scala:369)
+	scala.meta.internal.parsers.ScalametaParser.accept(ScalametaParser.scala:373)
+	scala.meta.internal.parsers.ScalametaParser.acceptAfterOptNL(ScalametaParser.scala:383)
+	scala.meta.internal.parsers.ScalametaParser.$anonfun$ifClause$1(ScalametaParser.scala:1468)
+	scala.meta.internal.parsers.ScalametaParser.autoEndPos(ScalametaParser.scala:349)
+	scala.meta.internal.parsers.ScalametaParser.autoEndPos(ScalametaParser.scala:354)
+	scala.meta.internal.parsers.ScalametaParser.ifClause(ScalametaParser.scala:1461)
+	scala.meta.internal.parsers.ScalametaParser.$anonfun$expr$2(ScalametaParser.scala:1518)
+	scala.meta.internal.parsers.ScalametaParser.atPosOpt(ScalametaParser.scala:303)
+	scala.meta.internal.parsers.ScalametaParser.autoPosOpt(ScalametaParser.scala:347)
+	scala.meta.internal.parsers.ScalametaParser.expr(ScalametaParser.scala:1512)
+	scala.meta.internal.parsers.ScalametaParser.$anonfun$blockStatSeq$4(ScalametaParser.scala:4501)
+	scala.meta.internal.parsers.ScalametaParser.stat(ScalametaParser.scala:4338)
+	scala.meta.internal.parsers.ScalametaParser.iter$6(ScalametaParser.scala:4501)
+	scala.meta.internal.parsers.ScalametaParser.$anonfun$blockStatSeq$1(ScalametaParser.scala:4518)
+	scala.meta.internal.parsers.ScalametaParser.$anonfun$blockStatSeq$1$adapted(ScalametaParser.scala:4468)
+	scala.meta.internal.parsers.ScalametaParser.scala$meta$internal$parsers$ScalametaParser$$listBy(ScalametaParser.scala:505)
+	scala.meta.internal.parsers.ScalametaParser.blockStatSeq(ScalametaParser.scala:4468)
+	scala.meta.internal.parsers.ScalametaParser.blockWithinDelims(ScalametaParser.scala:2434)
+	scala.meta.internal.parsers.ScalametaParser.blockWithStats$1(ScalametaParser.scala:2437)
+	scala.meta.internal.parsers.ScalametaParser.$anonfun$block$1(ScalametaParser.scala:2439)
+	scala.meta.internal.parsers.ScalametaParser.atPos(ScalametaParser.scala:300)
+	scala.meta.internal.parsers.ScalametaParser.autoPos(ScalametaParser.scala:346)
+	scala.meta.internal.parsers.ScalametaParser.block(ScalametaParser.scala:2436)
+	scala.meta.internal.parsers.ScalametaParser.blockExpr(ScalametaParser.scala:2430)
+	scala.meta.internal.parsers.ScalametaParser.simpleExpr0(ScalametaParser.scala:2187)
+	scala.meta.internal.parsers.ScalametaParser.simpleExpr(ScalametaParser.scala:2158)
+	scala.meta.internal.parsers.ScalametaParser.prefixExpr(ScalametaParser.scala:2141)
+	scala.meta.internal.parsers.ScalametaParser.postfixExpr(ScalametaParser.scala:2026)
+	scala.meta.internal.parsers.ScalametaParser.$anonfun$expr$2(ScalametaParser.scala:1607)
+	scala.meta.internal.parsers.ScalametaParser.atPosOpt(ScalametaParser.scala:303)
+	scala.meta.internal.parsers.ScalametaParser.autoPosOpt(ScalametaParser.scala:347)
+	scala.meta.internal.parsers.ScalametaParser.expr(ScalametaParser.scala:1512)
+	scala.meta.internal.parsers.ScalametaParser.expr(ScalametaParser.scala:1403)
+	scala.meta.internal.parsers.ScalametaParser.exprMaybeIndented(ScalametaParser.scala:1425)
+	scala.meta.internal.parsers.ScalametaParser.$anonfun$funDefRest$1(ScalametaParser.scala:3736)
+	scala.meta.internal.parsers.ScalametaParser.autoEndPos(ScalametaParser.scala:349)
+	scala.meta.internal.parsers.ScalametaParser.autoEndPos(ScalametaParser.scala:354)
+	scala.meta.internal.parsers.ScalametaParser.funDefRest(ScalametaParser.scala:3698)
+	scala.meta.internal.parsers.ScalametaParser.funDefOrDclOrExtensionOrSecondaryCtor(ScalametaParser.scala:3644)
+	scala.meta.internal.parsers.ScalametaParser.defOrDclOrSecondaryCtor(ScalametaParser.scala:3476)
+	scala.meta.internal.parsers.ScalametaParser.nonLocalDefOrDcl(ScalametaParser.scala:3455)
+	scala.meta.internal.parsers.ScalametaParser$$anonfun$1.applyOrElse(ScalametaParser.scala:4299)
+	scala.meta.internal.parsers.ScalametaParser$$anonfun$1.applyOrElse(ScalametaParser.scala:4294)
+	scala.PartialFunction.$anonfun$runWith$1(PartialFunction.scala:231)
+	scala.PartialFunction.$anonfun$runWith$1$adapted(PartialFunction.scala:230)
+	scala.meta.internal.parsers.ScalametaParser.statSeqBuf(ScalametaParser.scala:4357)
+	scala.meta.internal.parsers.ScalametaParser.$anonfun$batchSource$13(ScalametaParser.scala:4594)
+	scala.Option.getOrElse(Option.scala:201)
+	scala.meta.internal.parsers.ScalametaParser.$anonfun$batchSource$1(ScalametaParser.scala:4594)
+	scala.meta.internal.parsers.ScalametaParser.atPos(ScalametaParser.scala:300)
+	scala.meta.internal.parsers.ScalametaParser.autoPos(ScalametaParser.scala:346)
+	scala.meta.internal.parsers.ScalametaParser.batchSource(ScalametaParser.scala:4550)
+	scala.meta.internal.parsers.ScalametaParser.$anonfun$source$1(ScalametaParser.scala:4543)
+	scala.meta.internal.parsers.ScalametaParser.atPos(ScalametaParser.scala:300)
+	scala.meta.internal.parsers.ScalametaParser.autoPos(ScalametaParser.scala:346)
+	scala.meta.internal.parsers.ScalametaParser.source(ScalametaParser.scala:4543)
+	scala.meta.internal.parsers.ScalametaParser.entrypointSource(ScalametaParser.scala:4548)
+	scala.meta.internal.parsers.ScalametaParser.parseSourceImpl(ScalametaParser.scala:127)
+	scala.meta.internal.parsers.ScalametaParser.$anonfun$parseSource$1(ScalametaParser.scala:124)
+	scala.meta.internal.parsers.ScalametaParser.parseRuleAfterBOF(ScalametaParser.scala:51)
+	scala.meta.internal.parsers.ScalametaParser.parseRule(ScalametaParser.scala:46)
+	scala.meta.internal.parsers.ScalametaParser.parseSource(ScalametaParser.scala:124)
+	scala.meta.parsers.Parse$.$anonfun$parseSource$1(Parse.scala:29)
+	scala.meta.parsers.Parse$$anon$1.apply(Parse.scala:36)
+	scala.meta.parsers.Api$XtensionParseDialectInput.parse(Api.scala:25)
+	scala.meta.internal.semanticdb.scalac.ParseOps$XtensionCompilationUnitSource.toSource(ParseOps.scala:17)
+	scala.meta.internal.semanticdb.scalac.TextDocumentOps$XtensionCompilationUnitDocument.toTextDocument(TextDocumentOps.scala:206)
+	scala.meta.internal.pc.SemanticdbTextDocumentProvider.textDocument(SemanticdbTextDocumentProvider.scala:54)
+	scala.meta.internal.pc.ScalaPresentationCompiler.$anonfun$semanticdbTextDocument$1(ScalaPresentationCompiler.scala:350)
