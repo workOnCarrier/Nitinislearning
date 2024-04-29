@@ -1,8 +1,8 @@
 import json
 
 
-try_json = """[
-]"""
+try_json = """
+"""
 
 def test_json():
     json_obj = json.loads(try_json)

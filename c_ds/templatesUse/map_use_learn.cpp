@@ -100,18 +100,18 @@ void map_upper_bound_lower_bound_toy(){
 void map_upper_bound_lower_bound_toy_2(){
 
     // Create a map of three (string, int) pairs
-    std::map<int, std::string> m{ {1, "CPU_1", }, {2, "CPU_2", }, {3, "CPU_3", } };
+    std::map<int, std::string, std::greater<int>> m{ {1, "CPU_1", }, {2, "CPU_2", }, {3, "CPU_3", } };
  
     print_map("1) Initial map: ", m);
     try{
 
-    for (auto iter = m.upper_bound(3);
-             iter != m.lower_bound(1); iter--) {
+    for (auto iter = m.upper_bound(1);
+             iter != m.lower_bound(3); iter--) {
           std::cout << (iter->second) << " ";
         }
         cout << "\n";
-    for (auto iter = m.lower_bound(1);
-             iter != m.upper_bound(3); iter++) {
+    for (auto iter = m.lower_bound(3);
+             iter != m.upper_bound(1); iter++) {
           std::cout << (iter->second) << " ";
         }
     }catch(...){
