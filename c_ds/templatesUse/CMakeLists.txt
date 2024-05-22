@@ -18,3 +18,5 @@ add_executable(variable_parms
                 )
 
 add_executable(map_use_learn map_use_learn.cpp)
+
+add_executable(vector_use_learn vector_use_learn.cpp)
