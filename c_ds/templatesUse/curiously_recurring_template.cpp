@@ -43,12 +43,16 @@ class CrtpBase {
     CrtpBase(){}
     friend T;
 };
+
+// template <typename K, typename T = CrtpBase<K>>
+// class Level2Type2App : public T<Level2Type2App> {
 class Level2Type2App : public CrtpBase<Level2Type2App> {
     public:
     Level2Type2App (){
         std::cout << "Level2App" << std::endl;
     }
 };
+
 
 int main(){
     play_with_crtp_sample_1();
