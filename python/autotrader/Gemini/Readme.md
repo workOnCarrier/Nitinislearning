@@ -9,3 +9,10 @@
 * subscribe for market data
 * book trades
 * implement algo for booking trades in automatic logic
+
+
+
+# step by step execution
+[] pull price.
+[] pull the current book
+[] book an order
