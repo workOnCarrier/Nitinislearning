@@ -14,3 +14,4 @@ def check_connect_gemini():
 
 
 if __name__ == "__main__":
+    get_all_exchanges()
