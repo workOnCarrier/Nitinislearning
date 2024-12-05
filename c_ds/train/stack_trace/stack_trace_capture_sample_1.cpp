@@ -3,6 +3,7 @@
 #include <cstdlib>
 #include <execinfo.h>
 #include <csignal>
+#include <cxxabi.h>
 
 
 /*
@@ -37,6 +38,31 @@ void print_stacktrace() {
         std::cerr << "Stack trace:" << std::endl;
         for (int i = 0; i < frame_count; ++i) {
             std::cerr << symbols[i] << std::endl;
+            char* mangled_name = symbols[i];
+            char* demangled_name = nullptr;
+            int status = -1;
+            
+            // Extract the function name from the symbol using __cxa_demangle
+            char* left_paren = nullptr;
+            char* plus_sign = nullptr;
+            for (char* p = mangled_name; *p; ++p) {
+                if (*p == '(') left_paren = p;
+                else if (*p == '+') plus_sign = p;
+            }
+
+            if (left_paren && plus_sign && left_paren < plus_sign) {
+                *plus_sign = '\0';
+                demangled_name = abi::__cxa_demangle(left_paren + 1, nullptr, nullptr, &status);
+                *plus_sign = '+';
+            }
+
+            if (status == 0 && demangled_name) {
+                std::cerr << symbols[i] << ": " << demangled_name << std::endl;
+                free(demangled_name);
+            } else {
+                // If demangling fails, print the original symbol
+                std::cerr << "could not demangle" << symbols[i] << std::endl;
+            }
         }
         free(symbols);
     }else {

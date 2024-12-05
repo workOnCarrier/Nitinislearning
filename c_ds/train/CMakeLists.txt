@@ -18,3 +18,6 @@ add_executable(str_toy
                 )
 
 
+add_executable(template_int 
+                template_int.cpp
+                )
