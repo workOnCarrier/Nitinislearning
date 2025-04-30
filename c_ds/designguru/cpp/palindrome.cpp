@@ -22,9 +22,10 @@ class Solution {
 public:
     bool isPalindrome(std::string s){
         int i = 0, j = s.length() -1;
+        if (j < i) return true;
         while ( i < j){
-            while ( i < j && !isalnum(s[i])){ i++;}
-            while ( i < j && !isalnum(s[j])){ j--;}
+            if(!isalnum(s[i])){ i++; continue;}
+            if( !isalnum(s[j])){ j--; continue;}
             if (tolower(s[i]) != tolower(s[j])) { return false; }
             i++; j--;
         }
@@ -34,7 +35,7 @@ public:
 void run(const std::string & input, bool expected){
     Solution sol_obj;
 	auto output =  sol_obj.isPalindrome(input) ;
-	std::cout << output << std::endl;
+	std::cout << output << ":" ;
 	if (output == expected){
 		std::cout << "expectation matched" << std::endl;
 	}else{
@@ -46,8 +47,37 @@ void tc1(){
 	bool expected {false};
 	run(input, expected);
 }
-
+void tc2(){
+	std::string input {""};
+	bool expected {true};
+	run(input, expected);
+}
+void tc3() {
+    std::string input =  {"A man, a plan, a canal, Panama!"};
+    bool expected {true};
+    run (input, expected);
+}
+void tc4() {
+    std::string input =  {"race a car"};
+    bool expected {false};
+    run (input, expected);
+}
+void tc5() {
+    std::string input =  {"Was it a car or a cat I saw?"};
+    bool expected {true};
+    run (input, expected);
+}
+void tc6() {
+    std::string input =  {""};
+    bool expected {true};
+    run (input, expected);
+}
 int main(){
     tc1();
+    tc2();
+    tc3();
+    tc4();
+    tc5();
+    tc6();
 	return 0;
 }
