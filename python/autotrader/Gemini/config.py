@@ -5,7 +5,7 @@ base_url = "https://api.sandbox.gemini.com"
 mytrades_url = "/v1/mytrades"
 symbols_url = "/v1/symbols"
 # symbol_data_url = "/v1/symbols/details:{}"
-symbol_data_url = "/v1/symbols/details:symbol=btcusd"
+symbol_data_url = "/v1/symbols/details/BTCGUSD"
 gemini_api_key = "master-wWEJ48E5MQ5DhFmvNEI2"
 gemini_api_secret = "44NcJKHvD2o5MCtiY97vnpgWunru".encode()
 
