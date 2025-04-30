@@ -9,6 +9,7 @@ target
 .bloop
 .metals
 .vscode
+a.out
 *.swp
 
 *.reports
