@@ -21,3 +21,19 @@ add_executable(str_toy
 add_executable(template_int 
                 template_int.cpp
                 )
+
+add_executable(bs_sqrt 
+                binarysearch_sqrt.cpp
+                )
+
+add_executable(bs_sqrt_2
+                binarysearch_sqrt_2.cpp
+                )
+
+add_executable(tripplets_cg
+                tripplets_cg.cpp
+                )
+
+add_executable(tripplets
+                tripplets.cpp
+                )
