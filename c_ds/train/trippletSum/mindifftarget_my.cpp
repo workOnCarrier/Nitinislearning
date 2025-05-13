@@ -9,33 +9,33 @@ class Solution {
 public:
   int searchTriplet(vector<int>& arr, int targetSum) {
     // TODO: Write your code here
-    std::sort(arr.begin(), arr.end());
-    for (auto elem : arr) cout << elem << ", " ;
-    cout << endl;
-    int near_sum = std::numeric_limits<int>::max();
-    for ( int base_offset = 0; base_offset < arr.size()-2; base_offset ++ ){
-      int left = base_offset + 1;
+    if (arr.size() < 3) throw runtime_error("invalid input: insufficient size of array");
+    sort(arr.begin(), arr.end());
+    int near_sum = numeric_limits<int>::max();
+    for(int offset = 0; offset < arr.size() -2; offset++){
+      int curr_sum = 0;
+      int left = offset + 1;
       int right = arr.size() -1;
-      while (left < right){
-        int pos_sum = arr[base_offset] + arr[left] + arr[right];
-        int targetDiff = targetSum - pos_sum;
-        if (targetDiff == 0) {
-          return targetSum; // return sum of all the numbers
+      while ( left < right){
+        curr_sum = arr[offset] + arr[left] + arr[right];
+        cout <<  arr[offset] << ", " << arr[left] << ", " <<  arr[right] ;
+        cout << " :: " << curr_sum << " : " << near_sum << endl;
+        if ( targetSum == curr_sum ){
+          return targetSum;
         }
-        cout << " ->" << arr[base_offset] << ", " <<  arr[left] << ", " <<  arr[right] << " :: " << targetDiff << " : " << near_sum  << " : " << targetSum << endl;
-
-        if ( abs(targetDiff)  < abs(near_sum)  )  {
-          near_sum = targetDiff;
-          cout << "  ---- nearsum: " << near_sum << endl;
+        if ( abs(targetSum - curr_sum) < abs(targetSum - near_sum) ||
+              (curr_sum < near_sum && abs(targetSum - curr_sum) == abs(targetSum - near_sum))){
+          near_sum = curr_sum;
+          cout << "near_sum:" << near_sum << endl;
         }
-        if ( targetDiff > 0 ) {
-          left ++; cout << "  ---- add left for: " << targetDiff << endl;
-        } else {
-          right --; cout << "  ---- reduce right for: " << targetDiff << endl;
+        if ( targetSum > curr_sum){
+          left++;
+        }else{
+          right--;
         }
       }
-    }
-    return targetSum - near_sum;
+    } 
+    return near_sum;
   }
 };
 
