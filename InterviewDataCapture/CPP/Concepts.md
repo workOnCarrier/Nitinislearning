@@ -1,7 +1,8 @@
 
-# TOC
+# CPP metaprogramming
 
-## CPP metaprogramming
-### Partial Specialization
-### Default Templates
+## Partial Specialization
+```c++
 
+
+```
