@@ -15,6 +15,7 @@ RUN /opt/venv/bin/pip install ipython
 ENV PATH="/opt/venv/bin:$PATH"
 # build-base=0.5-r3
 RUN apt-get clean
+COPY .tmux.conf /root
 # COPY src/ /app/src
 # COPY test/ /app/test
 # COPY run.sh /app/
