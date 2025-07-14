@@ -8,3 +8,5 @@ add_executable(pathExists_my path_exists_my.cpp)
 add_executable(pathExists_ref path_exists_ref.cpp)
 
 
+add_executable(islands_my noOfProvinces_my.cpp)
+add_executable(islands_ref noOfProvinces_ref.cpp)
