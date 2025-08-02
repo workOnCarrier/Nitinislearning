@@ -1,0 +1,61 @@
+Is this big
+
+// string of parenthesis
+// --- a valid parenthesis ?
+
+() () 
+(()))
+)()( -- 
+((()
+
+"(" -- increment 
+")" -- decrement . -- if it goes -ve -- return false
+ -- if not zero -- return false else true
+
+bool isBalanced(const string & input){
+    auto len = input.len();
+    int count = 0;
+    for ( auto i = 0; i < len; i++){
+        if (input[i] == '(') count++;
+        else if (input[i] == ')'){
+            count--;
+        }
+        if (count < 0) return false;
+    }
+    if ( count != 0) return false;
+    return true;
+}
+// longest valid substring len of balanaced string
+// )(((()))()(
+// )((()))())))))(((
+// 012345678888889AB --- ((( -- 11 - 3 === 8
+
+
+bool isBalancedMax(const string & input){
+    std::stack<char> l_stack;
+    auto len = input.len();
+    int count = 0;
+    int max_count =0;
+    for ( auto i = 0; i < len; i++){
+        if (input[i] == '('){
+            l_stack.push(i);
+            count++;
+        }
+        else if (input[i] == ')'){
+            if (l_stack.empty()) { 
+                max_count = max(max_count, count);
+                count = 0;
+            }
+            else {
+                l_stack.pop();
+                count ++;
+            }
+        }
+    }
+    return max_count;
+}
+    
+
+
+
+

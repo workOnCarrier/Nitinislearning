@@ -10,3 +10,9 @@ add_executable(pathExists_ref path_exists_ref.cpp)
 
 add_executable(islands_my noOfProvinces_my.cpp)
 add_executable(islands_ref noOfProvinces_ref.cpp)
+
+add_executable(isSafeNodeMy save_node_my.cpp)
+add_executable(isSafeNodeRef save_node_ref.cpp)
+
+add_executable(isBusRoute_my bus_routes_my.cpp)
+# add_executable(isBusRoute_ref bus_routes_ref.cpp)
