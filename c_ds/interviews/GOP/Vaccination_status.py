@@ -41,12 +41,19 @@ def check_if_vaccinated(curr_vac_status: dict):
             return True
     return False
 
+def check_if_vaccinated_updated(cur_vac, cur_vac_count):
+    req_table = {'PZ': 2, 'MD': 2, 'CV': 2, 'JJ': 1}
+    if cur_vac in req_table.keys():
+        if cur_vac_count >= req_table[cur_vac]:
+            return True
+    return False
+
 def invalidate_other_vaccines(curr_vac_status: dict, value):
     for key, val in curr_vac_status.items():
         if key != value:
             curr_vac_status[key] = 0
 
-def isVaccinated(input: list):
+def isVaccinated_fail(input: list):
     date_vac_seq = {}
     sorted_date_vac_seq = {}
     # print(f"input:{input}")
@@ -71,9 +78,37 @@ def isVaccinated(input: list):
             return "vaccinated"
         # print(f"\t cumm_vacc:{cummulative_vacc}")
     return "not_vaccinated"
+
+def isVaccinated(input: list):
+    date_vac_seq = {}
+    sorted_date_vac_seq = {}
+    # print(f"input:{input}")
+    for entry in input:
+        vac = entry[0]
+        date = entry[1]
+        date_vac_seq[date] = vac
+    # print(date_vac_seq)
+    sorted_keys = list(date_vac_seq.keys())
+    sorted_keys.sort()
+    sorted_date_vac_seq = { i: date_vac_seq[i] for i in sorted_keys}
+    # print(f"sorted: {sorted_date_vac_seq}") # by date
+
+    cur_vac = ""
+    cur_vac_count = 0
+    for key, value in sorted_date_vac_seq.items():
+        if value != cur_vac:
+            cur_vac = value
+            cur_vac_count = 1
+        else:
+            cur_vac_count += 1
+        # print(f"cumm_vacc:{cummulative_vacc}")
+        if check_if_vaccinated_updated(cur_vac, cur_vac_count):
+            return "vaccinated"
+        # print(f"\t cumm_vacc:{cummulative_vacc}")
+    return "not_vaccinated"
     
 
-def isVaccinated_(doses):
+def isVaccinated_ai(doses):
     # Doses required for each brand
     req = {'PZ': 2, 'MD': 2, 'CV': 2, 'JJ': 1}
     # Sort doses by date
