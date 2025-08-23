@@ -1,0 +1,1 @@
+* vector.emplace_back
