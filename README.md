@@ -27,3 +27,6 @@ all things learning
   * weighted_graph implementation
 * flask experiments
 * metaprog -- experiments with meta programming
+### kafka_setup
+* Setup kafka and related applications
+  * using dev-network for docker communication

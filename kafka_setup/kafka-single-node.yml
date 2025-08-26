@@ -1,0 +1,50 @@
+version: '3'
+services:
+
+#running kafka without zookeeper (using KRaft)
+#Kafka Service
+  kafka:
+    image: 'bitnami/kafka:3.4'
+    container_name: kafka-broker
+    networks:
+      - dev-network
+    environment:
+      - KAFKA_ENABLE_KRAFT=yes
+      - ALLOW_PLAINTEXT_LISTENER=yes
+
+      - KAFKA_CFG_NODE_ID=1      
+      - KAFKA_CFG_PROCESS_ROLES=broker,controller
+      - KAFKA_CFG_CONTROLLER_LISTENER_NAMES=CONTROLLER
+      - KAFKA_CFG_INTER_BROKER_LISTENER_NAME=CLIENT
+      - KAFKA_CFG_LISTENERS=CLIENT://:29092,EXTERNAL://:9092,CONTROLLER://:9093
+      - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=CONTROLLER:PLAINTEXT,CLIENT:PLAINTEXT,EXTERNAL:PLAINTEXT
+      - KAFKA_CFG_ADVERTISED_LISTENERS=CLIENT://kafka:29092,EXTERNAL://localhost:9092
+      #Identify all other controllers in the cluster
+      - KAFKA_CFG_CONTROLLER_QUORUM_VOTERS=1@127.0.0.1:9093
+    ports:
+      - '9092:9092'
+
+  kafka-ui:
+    image: provectuslabs/kafka-ui
+    container_name: kafka-ui
+    networks:
+      - dev-network
+    depends_on:
+      - kafka
+    ports:
+      - "8080:8080"
+    restart: always
+    environment:
+      - KAFKA_CLUSTERS_0_NAME=kafka-broker
+      - KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS=kafka-broker:29092
+      # - KAFKA_CLUSTERS_0_ZOOKEEPER=zookeeper:2181
+      - DYNAMIC_CONFIG_ENABLED=true
+
+networks:
+  dev-network:
+    external: true
+
+volumes:
+  kafka_data:
+    driver: local
+    

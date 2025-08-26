@@ -14,7 +14,11 @@ RUN python3 -m venv /opt/venv
 RUN /opt/venv/bin/pip install ipython
 ENV PATH="/opt/venv/bin:$PATH"
 # build-base=0.5-r3
+RUN apt-get update && apt-get -y install docker.io docker-compose
+RUN  apt-get install -y iputils-ping
+
 RUN apt-get clean
+
 COPY .tmux.conf /root
 # COPY src/ /app/src
 # COPY test/ /app/test
