@@ -30,10 +30,10 @@ add_executable(bs_sqrt_2
                 binarysearch_sqrt_2.cpp
                 )
 
-add_executable(tripplets_cg
-                tripplets_cg.cpp
-                )
+# add_executable(tripplets_cg tripplets_cg.cpp)
 
-add_executable(tripplets
-                tripplets.cpp
+# add_executable(tripplets tripplets.cpp)
+
+add_executable(crack
+                crack.cpp
                 )
