@@ -23,3 +23,5 @@ add_executable(movingAvg movingAverage.cpp)
 add_executable(fib fibonacii.cpp)
 
 add_executable(rotstr rotatingStr.cpp)
+
+add_executable(decode decode_msg.cpp)
