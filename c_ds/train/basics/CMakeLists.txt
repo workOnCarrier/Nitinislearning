@@ -9,31 +9,17 @@ cmake_minimum_required(VERSION 3.22)
 project(Train VERSION 1.0.0 LANGUAGES CXX)
 set (CMAKE_CXX_STANDARD 23)
 
-add_executable(str2time 
-                check_str_to_time_convert.cpp
-                )
+set(CMAKE_BUILD_TYPE debug)
+set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -g")
 
-add_executable(str_toy 
-                string_toy.cpp
-                )
+add_executable(plus_one plus_one.cpp)
 
+add_executable(merge_alt_str merge_alternate.cpp)
 
-add_executable(template_int 
-                template_int.cpp
-                )
+add_executable(climbStairs climbstair.cpp)
 
-add_executable(bs_sqrt 
-                binarysearch_sqrt.cpp
-                )
+add_executable(movingAvg movingAverage.cpp)
 
-add_executable(bs_sqrt_2
-                binarysearch_sqrt_2.cpp
-                )
+add_executable(fib fibonacii.cpp)
 
-add_executable(tripplets_cg
-                tripplets_cg.cpp
-                )
-
-add_executable(tripplets
-                tripplets.cpp
-                )
+add_executable(rotstr rotatingStr.cpp)
