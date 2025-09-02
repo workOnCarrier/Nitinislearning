@@ -1,7 +1,15 @@
 class Solution:
     def merge(self, intervals: list[list[int]]) -> list[list[int]]:
         intervals.sort(key = lambda x : x[0])
-        # print(f"\t sorted_intervals:{intervals}")
+        result = [intervals[0]]
+        for item in intervals[1:]:
+            merged_item = result[-1]
+            if  merged_item[1] < item[0]:
+                result.append(item)
+            else:
+                merged_item[1] = max(merged_item[1], item[1])
+        return result
+
 
 
 

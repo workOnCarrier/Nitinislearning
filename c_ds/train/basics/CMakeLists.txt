@@ -25,3 +25,9 @@ add_executable(fib fibonacii.cpp)
 add_executable(rotstr rotatingStr.cpp)
 
 add_executable(decode decode_msg.cpp)
+
+add_executable(countAndSay countAndSay.cpp)
+
+add_executable(spiralMatrix spiral_matrix.cpp)
+
+add_executable(mergeInter merge_intervals.cpp)
