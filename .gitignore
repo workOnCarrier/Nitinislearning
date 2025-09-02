@@ -11,5 +11,6 @@ target
 .vscode
 a.out
 *.swp
+*.db
 
 *.reports
