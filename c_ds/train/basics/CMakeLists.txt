@@ -31,3 +31,19 @@ add_executable(countAndSay countAndSay.cpp)
 add_executable(spiralMatrix spiral_matrix.cpp)
 
 add_executable(mergeInter merge_intervals.cpp)
+
+add_executable(permutations permutations.cpp)
+
+add_executable(playStringView playStringView.cpp)
+
+add_executable(shortWordDist shortestWordDistance.cpp)
+
+add_executable(rangeSum rangeSum.cpp)
+
+add_executable(randomPickWei randomPickWeighted.cpp)
+
+add_executable(insertRemoveGetrandom insertRemoveGetrandom.cpp)
+
+add_executable(allGoodIndices allGoodIndices.cpp)
+
+add_executable(removeComments removeComments.cpp)
