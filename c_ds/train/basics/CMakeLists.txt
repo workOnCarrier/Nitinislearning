@@ -47,3 +47,7 @@ add_executable(insertRemoveGetrandom insertRemoveGetrandom.cpp)
 add_executable(allGoodIndices allGoodIndices.cpp)
 
 add_executable(removeComments removeComments.cpp)
+
+add_executable(blackBlocks blackBlocks.cpp)
+
+add_executable(blackBlocks_ref blackBlocks_ref.cpp)
