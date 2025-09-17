@@ -51,3 +51,9 @@ add_executable(removeComments removeComments.cpp)
 add_executable(blackBlocks blackBlocks.cpp)
 
 add_executable(blackBlocks_ref blackBlocks_ref.cpp)
+
+add_executable(longestCommonPrefix longestCommonPrefix.cpp)
+
+add_executable(longestCommonPrefix_ref longestCommonPrefix_ref.cpp)
+
+add_executable(mentionsPerUser mentionsPerUser.cpp)
