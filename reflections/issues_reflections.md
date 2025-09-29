@@ -16,7 +16,8 @@
 * C++ 20 features
 * C++23 features
 
-
-
+## Issue 5 -- incorrect visualization
+* I usually approach the problem by replicating the problem with steps I think in the first attempt V/S solving the problem mathematically
+* 
 
 
