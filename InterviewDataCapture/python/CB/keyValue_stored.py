@@ -59,8 +59,8 @@ class KeyValueStore:
         if not data:
             return result
         self.remove_ttl_expired(timestamp, key)
-        if key in data.keys():
-            result  = [f"{k}({v})" for k, v in sorted(data.items())]
+        if field in data.keys():
+            result  = [f"{k}({v[0]})" for k, v in sorted(data.items())]
         return result
  
     def prefix_search(self, timestamp, key, field, prefix):
@@ -70,7 +70,7 @@ class KeyValueStore:
             return result
         self.remove_ttl_expired(timestamp, key)
         if field in data.keys():
-            result  = [f"{k}({v})" for k, v in sorted(data.items()) if k.startswith(prefix)]
+            result  = [f"{k}({v[0]})" for k, v in sorted(data.items()) if k.startswith(prefix)]
         return result
     
     def set_with_ttl(self, timestamp, key, field, value, ttl):
@@ -82,12 +82,12 @@ class KeyValueStore:
     def search_historical_at_timestamp(self, timestamp, key, field, historical_ts):
         result = []
         historical_data = self.purged_store.get(key, None)
-        if historical_data:
-            result  = [f"{k}({v})" for k, v in sorted(historical_data.items()) if v[1] <= historical_ts]
+        if field in historical_data.keys():
+            result  = [f"{k}({v[0]})" for k, v in sorted(historical_data.items()) if v[1] <= historical_ts]
 
         data = self.store.get(key, None)
         if field in data.keys():
-            result  += [f"{k}({v})" for k, v in sorted(data.items()) if v[1] <= historical_ts]
+            result  += [f"{k}({v[0]})" for k, v in sorted(data.items()) if v[1] <= historical_ts]
 
         return result
  
@@ -122,7 +122,9 @@ def test_historical():
     search_before_ttl_expiry = db.search(111, 'foo', 'bar')
     print(f" before ttl expiry:{search_before_ttl_expiry}")
     search_after_ttl_expiry = db.search(112, 'foo', 'bar')
-    db.set(113, 'foo', '_bar_', 1)
+    db.set(113, 'foo', '_bar_', 108)
+    get_val = db.get(104, 'foo', '_bar_' )
+    print(f" latest value: {get_val}")
     print(f" after ttl expiry:{search_after_ttl_expiry}")
     search_history = db.search_historical_at_timestamp(115, 'foo', 'bar', 110)
     print(f" history ttl expiry:{search_history}")
