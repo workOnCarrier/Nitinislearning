@@ -11,7 +11,6 @@ class KeyValueStore:
     def remove_ttl_expired(self, timestamp, key):
         data = self.store.get(key, None)
         if not data:
-            print(f"\t key:{key} not found")
             return
         keys_to_remove = []
         for field, value_tuple in data.items():
@@ -23,13 +22,10 @@ class KeyValueStore:
     def get(self, timestamp, key, field):
         data = self.store.get(key, None)
         if not data:
-            print(f"\t key:{key} not found")
             return None
         self.remove_ttl_expired(timestamp, key)
         if field in data.keys():
             return data[field][0]
-        else:
-            print(f"\t field:{field} not found:{data}")
         return None
 
     def delete(self, timestamp, key, field):
@@ -52,12 +48,7 @@ class KeyValueStore:
             existing = data[field][0]
             if existing == expected_value:
                 data[field] = (new_value, timestamp, ttl)
-                print(f"\t field:{field} {existing}: updated to {new_value}:{self.store}")
                 return True
-            else:
-                print(f"\t field:{field} {existing}: did not match {expected_value}:{self.store}")
-        else:
-            print(f"\t field:{field} not found:{data}")
         return False
 
     def prefix_search(self, timestamp, key, field, prefix):
@@ -76,6 +67,7 @@ class KeyValueStore:
 
     def compare_and_set_with_ttl(self, timestamp, key, field, expected_value, new_value, ttl ):
         self.compare_and_set(timestamp, key, field, expected_value, new_value, ttl)
+    
 
 # Example usage:
 def test():
