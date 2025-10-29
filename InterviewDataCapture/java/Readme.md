@@ -1,0 +1,2 @@
+javac DoctorCounter.java
+java DoctorCounter
