@@ -13,3 +13,6 @@ add_executable( binSample
                 binSample.cpp
                 )
 
+add_executable( hospitalSchedule
+                hospitalSchedule.cpp
+                )
