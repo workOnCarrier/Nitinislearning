@@ -1,0 +1,14 @@
+# Remove node from end of linked list
+* use dummy node technique
+* dummy = ListNode(0, head)
+* progress cur n times
+* then progress cur and pre together till cur is None/NULL
+* pre -- will reach a node which is pre to the node to be removed
+* pre.next = pre.next.next
+
+# Deep Copy linked list with random pointer
+* create a hashmap on the current node a key with new node as value
+* second pass 
+*  using next and random pointers as keys 
+*  connect the nodes under current pointer
+* return from the hashmap the value of head
