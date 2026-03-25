@@ -11,8 +11,13 @@ RUN apt-get install -y python3 python3-pip python3-venv
 RUN apt-get install -y build-essential libffi-dev libssl-dev
 
 RUN python3 -m venv /opt/venv
-RUN /opt/venv/bin/pip install ipython
+RUN /opt/venv/bin/pip install --upgrade pip
+RUN /opt/venv/bin/pip install ipython jupyter jupyterlab notebook
 ENV PATH="/opt/venv/bin:$PATH"
+
+# Expose Jupyter notebook port
+EXPOSE 8888
+
 # build-base=0.5-r3
 RUN apt-get update && apt-get -y install docker.io docker-compose
 RUN  apt-get install -y iputils-ping
