@@ -10,7 +10,8 @@
 	},
 	"runArgs": [
 		"--volume=/var/run/docker.sock:/var/run/docker.sock",
-		"--network=dev-network"
+		"--network=dev-network",
+		"--add-host=host.docker.internal:host-gateway"
 	],
 	// "settings": {
 	//	"terminal.integrated.defaultProfile.linux": "bash"
