@@ -1,0 +1,119 @@
+Nitin Sharma
+Phone: +65 93260586
+nitindasuya@rediffmail.com
+https://www.linkedin.com/in/nitin-sharma-6b41472/
+https://github.com/workOnCarrier
+ 
+Summary
+Software engineer with 15+ years in financial services industry experience in building scalable, high-performance, high-
+throughput, multi-threaded applications. Skilled at coordinating complex project dependencies across multiple teams
+including vendor dependencies, to deliver critical solutions under tight deadlines. Adept at leading cross functional teams,
+mentoring engineers and collaborating with business stakeholders to firm up technological strategies to achieve business
+goals.
+
+Skills
+Languages : C++, Python, Graph programming
+debuggers : GDB, VS
+compilers : gcc, VS
+tools : git, Bazzel, Valgrind, Datadog
+Databases : MsSql, MongoDB, Postgres, Rocksdb
+Messaging : Kafka, Solace, Ultra messaging
+Platforms : Linux, Docker Windows, AWS
+APIs / Protocols : REST, gRPC, FIX
+
+Domains
+Crypto, e-Trading-Commodities, 
+Rates, Market 
+Risk, Limit management and Credit Risk
+Methodologies
+Agile (Scrum, Kanban), Test-Driven Development(TDD)
+
+Work authorisation: Singapore Permanent Resident                                                                                          
+
+Experience
+
+Gemini Crypto Exchange Staff Engineer – [June 2023 – April 2025]
+C++, python, Scala, REST, gRPC, FIX, Docker, Postgres, Rockdb, Datadog, Bazel, SBE, Valgrind
+This U.S.-regulated exchange has been operational for over a decade, with a hybrid infrastructure deployed across both on-
+prem and AWS. The exchange offers order matching, position management for spot and perpetual products across multiple
+currencies, handling nearing 160 million orders per day. This is one of a few exchanges supporting cross collateral to reduce
+liquidation risk due to adverse market movement
+➢ Identified and resolved resilience of the distributed system
+◦ Upgraded kafka to the latest version. All services were upgraded without exchange downtime
+◦ Augmented C++ Rest and gRPC APIs for microservice communication to support direct crypto purchase from the mobile / exchange UI
+◦ Incorporated reliability of Ultra Messaging infrastructure in the datacenter by adding redundancy to improve
+failover and recovery of services like pre-trade, ledger, match-engine that employ multicast(UDP) communication
+◦ Identified the gaps for CCXT integration with the Gemini REST SDK that target the algo-trader audience
+➢ FIX infrastructure design and resilience
+◦ Implemented hot-cold setup and support for session transfer between hot-cold instances for DropCopy service
+◦ Resolved memory leaks using valgrind in docker environment in AWS
+◦ Addressed issues in FIX flow, client onboarding, session management, and server resilience
+◦ Improved recovery logic for FIX servers
+➢ Designed and implemented backfill service in C++ for Trade and Order data storage pipelines, addressing recovery
+from data loss/corruption resulting from exchange system failures. Integrated versioning, audit and rollback
+functionality to uphold data quality and support compliance needs with dryrun support. The data encoding was
+Protobuf/SBE stored in S3
+➢ Improved OMS query performance of active orders and recent closed orders query
+➢ Resolved user account history UI enhancements in scala
+➢ Led triage and root cause analysis for production issues, including prevention strategies and closure tracking
+➢ Improved the instrumentation of services to improve health monitoring in datadog
+
+Commodities E-Trading @Citi Bank VP [July 2019 – June 2023]
+C++, Python, MongoDb, Linux  
+Commodities e-Trading system is state of the art front office customer facing system built on top of Staged Event Driven Architecture(SEDA),
+implemented inhouse as forward propagation graph (FPG). This is a reactive event driven framework
+with microservices architecture employing python used as DSL and execution engine in C++. Clients can book spot orders
+with the system using thick clients. The position acquired by Citi is electronically liquidated in the exchange(LME / CME)
+using various hedging strategies.  TWAP price with spread based on the internal credit rating of the clients is shown to the
+onboarded clients in trading tiles.
+➢ Implemented python-C++ bindings for Solace in multi-threaded environment handling Global Interpreter Lock (GIL) supporting asynchronoous programming and handled concurrency issues
+➢ Coordinated onboarding of external clients with data-centre and connectivity teams for FIX connectivity
+➢ Delivered multiple time critical projects in parallel, catering to downstream compliance and regulatory requirements
+➢ Resolved issues in market connectivity for LME and exchange connectivity with CME for order management
+➢ Implemented Drop-Copy feed for external clients
+➢ Incorporated regulatory driven controls for the E-Trading system to stop run-away trading algorithms
+➢ Integrated with the CME Order Management System (OMS) over FIX
+➢ Impolemented e-trading desk reporting requests using python against MongoDB and Kdb
+
+Barclays Capital AVP [Aug 2007 – July 2019]
+C++, C#, Solace, MsSql, Windows 2k8, TeamCity
+Rates e-Trading enhancements
+Rates e-Trading platform was an industry leading e-Trading platform built in-house at Barclays. Rates intra-day risk system
+was part of the distributed platform providing traders an integrated view of outstanding positions, risk calculated to the
+desired curves, within milli-seconds of the market events.
+➢ Improvement of risk calculation times by load-balancing calculation across engines for sub-millisecond
+performance to ensure high throughput
+➢ Implemented Total Return Swap (TRS) support in the risk calculation engine
+➢ Built an explanation engine in python to equip trading desk support with calculation explanations
+➢ Other infra structure projects, involving coordination with Infrastructure, and testing team and 
+Qantitative Analytics (QA) team.
+◦ data centre migration and server upgrades: coordinating for server allocation, application migration, testing and cutover
+◦ Build system improvements coordination
+◦ Quant lib upgrades of various services
+Rearchitecture of Risk system for Basel III Existing risk system
+was part of Basel II regulatory requirements where sensitivity based historical simulations were used
+to calculate the specific risk that is a component in Risk Weighted Assets (RWA) capital requirement calculations. To cater
+to Basel 3 requirements to account for credit risk component in market risk calculations, the monolith was migrated to
+Service Oriented Architecture. C# was language of choice for non performance critical services and C++ was used for
+performance critical services.
+➢ Design, plan and execute the SOA migration
+➢ Coordinate with Management, Business, Quant, QA and Run The Bank(RTB) teams
+➢ Recruit and mentor new team members
+➢ Requirement Gathering and Managing multiple steams of work
+➢ Oboarding and Training offshore teams
+Rearchitecture of Limit management system
+Limit management was a group wide system, used by Barclays Capital, Barclays Wealth and Barclays Bank. The system
+implemented multiple limit management models relevant to varying businesses needs.
+➢ Responsible for planning, monitoring, unblocking and coordination with vendor team for
+◦ migrating database from Sybase to MsSql
+◦ Rewrite the C++ components to work with MsSql replacing Sybase components
+➢ Coordinated with business, QA and RTB teams for various project deliveries across requirement gathering,
+scheduling, planning and release coordination
+➢ Instituted agile methodology to bring the project on track
+
+Education: Bachelor of Engineering @Punjab Engineering College Chandigarh, India. year: 1996-2000
+Branch : Electronics and Electrical Communications
+
+Language Proficiency
+English: Expert
+Japanese: Introductory (Yon Kyu certified)
